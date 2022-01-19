@@ -4,7 +4,7 @@ module.exports = {
     index,
     show,
     new: newFlight,
-    create, 
+    create
 };
 
 function index(req, res) {
@@ -25,7 +25,7 @@ function newFlight(req, res) {
 
 function create(req, res) {
   req.body.departs = req.body.departs || undefined;
-  req.body.flightNo = req.body.flightNo.trim();
+  //req.body.flightNo = req.body.flightNo.trim();
   const flight = new Flight(req.body);
   flight.save(function(err) {
     if (err) return res.render('flights/new');
@@ -33,6 +33,7 @@ function create(req, res) {
     res.redirect('/flights');
   });
 }
+
 
 
 

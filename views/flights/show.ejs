@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-
+<h3>Departure Information</h3>
 <section id="show-page">
     <div>Airline: </div>
     <div><%= flight.airline %></div>
@@ -9,11 +9,28 @@
     <div><%= flight.flightNo %></div>
     <div>Departs: </div>
     <div><%= flight.departs %></div>
-    <form action="/flights" method="POST">
-        <label>Arrival:
-            <input type="datetime-local" name="departs">
+</section>
+<h3>Arrival Information</h3>
+    <% if (flight.destination.length) { %>
+        <% flight.destination.forEach(function(dest) { %>
+            <tr>
+                <th>Destination Airport:</th>
+                <td><%= dest.airport %></td>
+                <th>Arrives:</th>
+                <td><%= dest.arrival %></td>
+              </tr>
+            <% }); %>
+        </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Destinations Availiable</h5>
+  <% } %>
+<h3>Add Flight Destination Information</h3>
+    <form id="add-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
+        <label>Arrival Time:
+            <input type="datetime-local" name="arrival">
           </label><br>
-        <label>Destinations:
+        <label>Destination:
             <select name="airport">
               <option value="AUS">AUS</option>
               <option value="DFW">DFW</option>
@@ -22,18 +39,6 @@
               <option value="SAN">SAN</option>
             </select>
         </label><br>
-            <input type="submit" value="Save Flight">
-          </label>
+        <input type="submit" value="Add Flight Destination">
     </form>
-    <div><%= %></div>
-  </section>
-
-
-
-
-
-
-
-
-
 <%- include('../partials/footer') %>
