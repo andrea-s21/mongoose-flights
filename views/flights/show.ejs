@@ -18,6 +18,8 @@
                 <td><%= dest.airport %></td>
                 <th>Arrives:</th>
                 <td><%= dest.arrival %></td>
+                <th>Tickets</th>
+      
               </tr>
             <% }); %>
         </tbody>
@@ -41,4 +43,21 @@
         </label><br>
         <input type="submit" value="Add Flight Destination">
     </form>
+  <h3>Add Ticket Information</h3>
+  <% tickets.forEach(function(t) { %>
+    <tr>
+        <td>
+            <%= t.seat %>
+        </td>
+        <td>
+            <%= t.price %>
+        </td>
+        <td>
+            <%= t.flight %>
+        </td>
+    </tr>
+    <% }); %>
+    <section>
+      <a href="/flights/<%= flight._id %>/tickets/new"><button>Add Ticket</button></a>
+    </section>
 <%- include('../partials/footer') %>
