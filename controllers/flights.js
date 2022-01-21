@@ -6,7 +6,6 @@ module.exports = {
     show,
     new: newFlight,
     create,
-
 };
 
 function index(req, res) {
@@ -17,6 +16,7 @@ function index(req, res) {
 
 function show(req, res) {
   Flight.findById(req.params.id, function(err, flight) {
+    console.log(flight)
     Ticket.find({flight: flight._id}, function(err, tickets) {
       console.log(tickets);
         res.render('flights/show', {title: 'Flight Detail', flight, tickets});
@@ -39,4 +39,6 @@ function create(req, res) {
     res.redirect('/flights');
   });
 }
+
+
 

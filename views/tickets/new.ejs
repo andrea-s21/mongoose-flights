@@ -2,14 +2,12 @@
 
 <h3>Add Flight Detials</h3>
 
-<form id="add-ticket-form" action="/tickets" method="POST">
+<form id="add-ticket" action="/flights/<%= flightId %>/tickets" method="POST">
   <label>Seat:</label>
   <input name="seat" required pattern="[A-F][1-9]\d?">
   <label>Price:</label>
   <input type="number" name="price">
-  <label>Flight:</label>
-  <input type="Schema.Types.ObjectId" name="flight" value="Add Ticket">
+  <input type="submit" value="Add Ticket">
 </form>
-<input type="submit" value="Add Ticket">
 
 <%- include('../partials/footer') %>

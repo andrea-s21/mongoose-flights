@@ -17,15 +17,33 @@
                 <th>Destination Airport:</th>
                 <td><%= dest.airport %></td>
                 <th>Arrives:</th>
-                <td><%= dest.arrival %></td>
-                <th>Tickets</th>
-      
+                <td><%= dest.arrival %></td>     
               </tr>
             <% }); %>
         </tbody>
     </table>
   <% } else { %>
     <h5>No Destinations Availiable</h5>
+  <% } %>
+<h3>Ticket Information</h3>
+    <% if (tickets.length) { %>
+        <% tickets.forEach(function(t) { %>
+            <tr>
+                <th>Seat:</th>
+                <td><%= t.seat %></td>
+                <th>Price:</th>
+                <td><%= t.price %></td> 
+                <td>
+                  <form action="/tickets/<%= t._id %>?_method=DELETE" method="POST">
+                    <input type="submit" name="" value="Delete Ticket">
+                  </form>
+                </td>       
+              </tr>
+              <% }); %>
+        </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Ticketing Information Availiable</h5>
   <% } %>
 <h3>Add Flight Destination Information</h3>
     <form id="add-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
@@ -44,19 +62,6 @@
         <input type="submit" value="Add Flight Destination">
     </form>
   <h3>Add Ticket Information</h3>
-  <% tickets.forEach(function(t) { %>
-    <tr>
-        <td>
-            <%= t.seat %>
-        </td>
-        <td>
-            <%= t.price %>
-        </td>
-        <td>
-            <%= t.flight %>
-        </td>
-    </tr>
-    <% }); %>
     <section>
       <a href="/flights/<%= flight._id %>/tickets/new"><button>Add Ticket</button></a>
     </section>
