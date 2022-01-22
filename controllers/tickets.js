@@ -7,24 +7,23 @@ module.exports = {
     delete: deleteTicket
 }
 
-function newTicket(req,res) {
+function newTicket(req, res) {
     res.render('tickets/new', { flightId: req.params.id });
 }
 
 function create(req, res) {
     flightId = req.params.id;
     req.body.flight = flightId;
-    //const ticket = new Ticket(req.body);
-    Ticket.create(req.body, function(err, ticket) {
-            res.redirect(`/flights/${flightId}`);
+    Ticket.create(req.body, function (err, ticket) {
+        res.redirect(`/flights/${flightId}`);
     });
 }
 
 function deleteTicket(req, res) {
-    Ticket.findById(req.params.id).populate('flight').exec(function(err, ticket) {
-        Ticket.findByIdAndDelete(req.params.id, function(err) {
+    Ticket.findById(req.params.id).populate('flight').exec(function (err, ticket) {
+        Ticket.findByIdAndDelete(req.params.id, function (err) {
             console.log(`deleting: ${ticket}`);
-			res.redirect(`/flights/${ticket.flight._id}`);
+            res.redirect(`/flights/${ticket.flight._id}`);
         });
     });
 }
