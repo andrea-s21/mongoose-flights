@@ -1,15 +1,15 @@
 <%- include('../partials/header') %>
 
   <h2>Enter a New Flight</h2>
-  <form action="/flights" method="POST">
-    <label>Airline
+  <form id="add-flight" action="/flights" method="POST">
+    <label>Airline:
       <select name="airline">
         <option value="American">American</option>
         <option value="Southwest">Southwest</option>
         <option value="United">United</option>
       </select>
     </label><br>
-    <label>Airport
+    <label>Airport:
       <select name="airport">
         <option value="AUS">AUS</option>
         <option value="DFW">DFW</option>
@@ -24,7 +24,7 @@
     <label>Departs:
       <input type="datetime-local" name="departs">
     </label><br>
-    <input type="submit" value="Add Flight">
+    <input id="add-flightBtn" type="submit" value="Add Flight">
   </form>
 
   <%- include('../partials/footer') %>
